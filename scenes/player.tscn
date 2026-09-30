@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bso6ati4edf4i"]
+
+[ext_resource type="Texture2D" uid="uid://cr6h2fispjm1y" path="res://images/walking.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cxyykgu8i8tjl" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="AudioStream" uid="uid://bx21r73fa0x1f" path="res://jump.mp3" id="3_qhqgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 0, 169, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 0, 169, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(169, 0, 169, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(364, 0, 103, 369)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(200, 0, 118, 369)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1o6en"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2els")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqgy")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuyoq")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o6en"]
+size = Vector2(102, 202)
+
+[node name="player" type="CharacterBody2D" unique_id=1446936928]
+script = ExtResource("1_g2els")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1834912055]
+sprite_frames = SubResource("SpriteFrames_1o6en")
+animation = &"walk"
+autoplay = "walk"
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=628216810]
+position = Vector2(2, 13)
+shape = SubResource("RectangleShape2D_1o6en")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2126738583]
+zoom = Vector2(0.5, 0.5)
+
+[node name="jump" type="AudioStreamPlayer2D" parent="." unique_id=271277002]
+stream = ExtResource("3_qhqgy")
